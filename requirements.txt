@@ -1,0 +1,17 @@
+SoundFile
+torch==1.7.0
+librosa
+matplotlib
+numpy==1.19.2
+oss2==2.13.1
+pika==1.1.0
+pysptk
+tensorflow==1.15
+tqdm
+pyworld
+pandas==0.25.3
+pretty-midi==0.2.8
+pypinyin==0.36.0
+requests==2.24.0
+pysndfx
+matchering
