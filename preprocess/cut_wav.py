@@ -19,7 +19,7 @@ def get_segs_from_txtgrd(raw_path):
     txtgrd_path = raw_path.replace('.wav', '.TextGrid')
     py_grid = textgrid.TextGrid.fromFile(txtgrd_path)
 
-    source_tier = py_grid.tiers[0]
+    source_tier = py_grid.getFirst("音素")
     assert source_tier
 
     source_intervals_li = list(source_tier)
@@ -32,22 +32,12 @@ def get_segs_from_txtgrd(raw_path):
         before = None if i == 0 else source_intervals_li[i-1]
         after = None if i == len(source_intervals_li)-1 else source_intervals_li[i+1]
 
-        if interval.mark not in ['pau', 'sil']:
+        if interval.mark not in ['SP', 'AP']:
 
-            if interval.mark in ['br']:
-
-                # after是真实音素时，加个start idx
-                if after !=None and after.mark not in ['pau', 'sil', 'br']:
-                    start_idices.append(i)
-                # before是真实音素时，加个end idx
-                if before != None and before.mark not in ['pau', 'sil', 'br']:
-                    end_idices.append(i)
-            else:
-
-                if after == None or after.mark in ['pau', 'sil']:
-                    end_idices.append(i)
-                if before == None or before.mark in ['pau', 'sil']:
-                    start_idices.append(i)
+            if after == None or after.mark in ['SP', 'AP']:
+                end_idices.append(i)
+            if before == None or before.mark in ['SP', 'AP']:
+                start_idices.append(i)
 
     # try to cut a longer piece and shorter than a fixed time
     shorter_than_second = 19
@@ -83,7 +73,7 @@ def write_seg_txtgrd(segs, file_name, dist_folder, pad=None):
 
         if pad:
             pad_interval_lenTime = pad
-            seg_tier.add(0.0, pad_interval_lenTime, 'sil')
+            seg_tier.add(0.0, pad_interval_lenTime, 'SP')
             offset -= pad_interval_lenTime
 
 
@@ -94,7 +84,7 @@ def write_seg_txtgrd(segs, file_name, dist_folder, pad=None):
             seg_tier.add(minTime, maxTime, phn)
 
         if pad:
-            seg_tier.add(maxTime, maxTime+pad_interval_lenTime, 'sil')
+            seg_tier.add(maxTime, maxTime+pad_interval_lenTime, 'SP')
         seg_grid = textgrid.TextGrid()
         seg_grid.append(seg_tier)
         write_path = os.path.join(dist_folder, file_name+str(seg_i)+'.TextGrid')
@@ -111,7 +101,7 @@ def write_seg_wav(segs, raw_path, file_name, dist_folder, pad=None):
         start_time = seg[0].minTime
         stop_time = seg[-1].maxTime
         for interval in seg:
-            if interval.mark in ['sil', 'pau']:
+            if interval.mark in ['SP']:
                 s = int(sr*interval.minTime)
                 e = int(sr*interval.maxTime)
                 y[s:e] = 0.0

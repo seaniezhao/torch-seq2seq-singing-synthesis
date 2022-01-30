@@ -10,7 +10,7 @@ f0_max = 1100.0
 f0_min = 125.0
 
 
-ROOT_PATH = './data_root'
+ROOT_PATH = '/Users/zhaowenxiao/PythonProj/torch-seq2seq-singing-synthesis/data_root'
 
 
 # ------------path config------------------

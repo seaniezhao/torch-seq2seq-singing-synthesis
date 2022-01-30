@@ -9,7 +9,6 @@ cdir = os.path.dirname(__file__)
 # with open(os.path.join(cdir, 'pinyin.json'), "r") as f:
 #     pp_dict = json.loads(f.read())
 
-# todo delete key "PIY"
 pkl_file_name = 'pinyin-phoneme.pkl'
 
 with open(os.path.join(cdir, pkl_file_name), "rb") as f:
@@ -79,17 +78,17 @@ def Is_pinyin(pinyin):
 
 # 不发声,元音,辅音
 def get_phn_class(phn):
-    if phn.strip() in ['pau', 'sli', 'br', 'sp', '#']:
+    if phn.strip() in ['SP', 'AP']:
         return 0
     elif phn in ['k', 'p', 's', 'h', 't', 'j', 'c', 'b', 'z', 'm', 'g', 'l',
-                 'd', 'ch', 'zh', 'x', 'q', 'sh', 'f', 'n', 'r', 'pl']:
-        return 0
+                 'd', 'ch', 'zh', 'x', 'q', 'sh', 'f', 'n', 'r']:
+        return 1
     else:
         return 2
 
 
 def get_all_phon():
-    all_phon = ['none', 'pau', 'br', 'sil', 'sp', 'uar']
+    all_phon = ['SP', 'AP']
     for k, v in pp_dict.items():
         for phn in v:
             if phn not in all_phon:
@@ -123,7 +122,7 @@ def get_sonorants():
 
 
 def get_pause():
-    return ['none', 'pau', 'sil', 'sp']
+    return ['SP', 'AP']
 
 
 def add_pinyin_phn(pinyin, phn_list):
