@@ -117,8 +117,14 @@ def main():
     test_count = 0
     for (file_name, time_phon_list, code_f0, code_sp, code_ap, f0, energy) in tqdm(data_to_save):
         total_count += 1
-        phn_condi  = make_phn_condition(time_phon_list, code_f0)
-        frame_condi = make_frame_condition(time_phon_list, code_f0)
+
+        try:
+            phn_condi  = make_phn_condition(time_phon_list, code_f0)
+            frame_condi = make_frame_condition(time_phon_list, code_f0)
+        except:
+            print("error")
+            continue
+
 
         code_sp = (code_sp - sp_min) / (sp_max - sp_min) - 0.5
         code_ap = (code_ap - ap_min) / (ap_max - ap_min) - 0.5

@@ -1,8 +1,8 @@
 # train
-batch_size = 32
+batch_size = 8
 epoch = 50000
 n_warm_up_step = 4000
-save_per_epoch = 100
+save_per_epoch = 10
 lr = 1e-4
 
 # Mode
@@ -21,7 +21,7 @@ duration_predictor_filter_size = 256
 duration_predictor_kernel_size = 3
 dropout = 0.1
 
-input_channel = 96
+input_channel = 66
 
 input_f0_channel = 4
 
