@@ -1,3 +1,5 @@
+import random
+
 from config import *
 import fnmatch
 import sys
@@ -94,7 +96,7 @@ def main():
         energy_min = _energy_min if _energy_min < energy_min else energy_min
         energy_max = _energy_max if _energy_max > energy_max else energy_max
         #
-        # # 为了debug时不让程序把全部数据处理完而使用
+        # 为了debug时不让程序把全部数据处理完而使用
         # if len(data_to_save) >= 32:
         #     break
 
@@ -111,7 +113,7 @@ def main():
             [energy_min, energy_max])
 
     # 为了更好的优化模型, 还是手动控制测试集比较好
-    test_names = ['niyaodequannazou']
+    test_names = [item[0] for item in random.choices(data_to_save, k=20)]
 
     total_count = 0
     test_count = 0

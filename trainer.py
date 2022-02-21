@@ -137,7 +137,7 @@ class ModelTrainer:
                     # print("one training step does take approximately " + str((toc - tic) * 0.01) + " seconds)")
 
                 if (current_epoch) % 500 == 0 and draw:
-                    plt.imshow(np.transpose(target.detach().cpu().numpy()[0]), aspect='auto', origin='bottom',
+                    plt.imshow(np.transpose(target.detach().cpu().numpy()[0]), aspect='auto', origin='lower',
                                interpolation='none')
                     plt.show()
                     draw = False

@@ -1,8 +1,8 @@
 # train
 batch_size = 8
-epoch = 50000
+epoch = 2000
 n_warm_up_step = 4000
-save_per_epoch = 10
+save_per_epoch = 100
 lr = 1e-4
 
 # Mode

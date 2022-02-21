@@ -10,7 +10,7 @@ f0_max = 1100.0
 f0_min = 125.0
 
 
-ROOT_PATH = '/home/sean/data/opencpop_dataset'
+ROOT_PATH = 'E:\dataset\dataset_use\opencpop'
 
 
 # ------------path config------------------

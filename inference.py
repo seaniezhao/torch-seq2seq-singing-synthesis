@@ -265,7 +265,7 @@ class ModelEvaluater():
 
 
 if __name__ == '__main__':
-    model = ModelEvaluater('snapshots/default_1699_2021-11-23_14-29-26')
+    model = ModelEvaluater('snapshots/default_1999_2022-02-20_17-52-05')
 
     # model.evaluate()
 
