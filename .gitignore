@@ -1,3 +1,4 @@
 data_root
+snapshots
 *.pyc
 .idea/
